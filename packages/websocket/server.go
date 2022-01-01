@@ -52,7 +52,6 @@ func NewWebSocketServer(
 
 func (server *WebSocketServer) handleWebSocketRequest(writer http.ResponseWriter, request *http.Request) {
 	responseHeader := http.Header{}
-	//responseHeader.Add("Sec-WebSocket-Protocol", "protoo")
 	socket, err := server.upgrader.Upgrade(writer, request, responseHeader)
 	if err != nil {
 		logger.Panicf("%v", err)
@@ -66,13 +65,11 @@ func (server *WebSocketServer) handleTurnServerRequest(writer http.ResponseWrite
 	server.handleTurnServer(writer, request)
 }
 
-// Bind .
 func (server *WebSocketServer) Bind(cfg WebSocketServerConfig) {
 	// Websocket handle func
 	http.HandleFunc(cfg.WebSocketPath, server.handleWebSocketRequest)
 	http.HandleFunc(cfg.TurnServerPath, server.handleTurnServerRequest)
 	http.Handle("/", http.FileServer(http.Dir(cfg.HTMLRoot)))
-	logger.Infof("Flutter WebRTC Server listening on: %s:%d", cfg.Host, cfg.Port)
-	// http.ListenAndServe(cfg.Host+":"+strconv.Itoa(cfg.Port), nil)
+	logger.Infof("WebRTC Server listening on: %s:%d", cfg.Host, cfg.Port)
 	panic(http.ListenAndServeTLS(cfg.Host+":"+strconv.Itoa(cfg.Port), cfg.CertFile, cfg.KeyFile, nil))
 }

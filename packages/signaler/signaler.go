@@ -19,7 +19,7 @@ import (
 )
 
 const (
-	sharedKey = `flutter-webrtc-turn-server-shared-key`
+	sharedKey = `webrtc-turn-server-shared-key`
 )
 
 type TurnCredentials struct {
