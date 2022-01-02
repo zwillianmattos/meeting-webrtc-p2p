@@ -71,5 +71,7 @@ func (server *WebSocketServer) Bind(cfg WebSocketServerConfig) {
 	http.HandleFunc(cfg.TurnServerPath, server.handleTurnServerRequest)
 	http.Handle("/", http.FileServer(http.Dir(cfg.HTMLRoot)))
 	logger.Infof("WebRTC Server listening on: %s:%d", cfg.Host, cfg.Port)
-	panic(http.ListenAndServeTLS(cfg.Host+":"+strconv.Itoa(cfg.Port), cfg.CertFile, cfg.KeyFile, nil))
+
+	
+	panic(http.ListenAndServe(cfg.Host+":"+strconv.Itoa(cfg.Port), nil))
 }
