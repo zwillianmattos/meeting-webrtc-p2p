@@ -2,7 +2,7 @@ package main
 
 import (
 	"os"
-
+	"strconv"
 	"github.com/zwillianmattos/webrtc/packages/logger"
 	"github.com/zwillianmattos/webrtc/packages/signaler"
 	"github.com/zwillianmattos/webrtc/packages/turn"
@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-
 	cfg, err := ini.Load("configs/config.ini")
 	if err != nil {
 		logger.Errorf("Fail to read file: %v", err)
@@ -38,16 +37,17 @@ func main() {
 	sslKey := cfg.Section("general").Key("key").String()
 	bindAddress := cfg.Section("general").Key("bind").String()
 
-	port, err := cfg.Section("general").Key("port").Int()
-	if err != nil {
-		port = 8086
-	}
+	port := os.Getenv("PORT")
+	port_int, err := strconv.Atoi(port)
+    if port == "" {
+        logger.Errorf("$PORT must be set")
+    }
 
 	htmlRoot := cfg.Section("general").Key("html_root").String()
 
 	config := websocket.DefaultConfig()
 	config.Host = bindAddress
-	config.Port = port
+	config.Port =  port_int
 	config.CertFile = sslCert
 	config.KeyFile = sslKey
 	config.HTMLRoot = htmlRoot
