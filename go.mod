@@ -1,6 +1,6 @@
 module github.com/zwillianmattos/webrtc
 
-go 1.17
+go 1.15
 
 require (
 	github.com/chuckpreslar/emission v0.0.0-20170206194824-a7ddd980baf9
