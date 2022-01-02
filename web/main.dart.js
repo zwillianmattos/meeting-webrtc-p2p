@@ -18245,7 +18245,7 @@ for(s=c-b,r=b>c,q=0;q<a;++q){if(r)A.W(A.bA(""+b+" cannot be > "+c))
 p[q]=B.d.de(s*B.vJ.a1Z())+b}return A.lT(p,0,null)},
 a75(a,b){var s=0,r=A.N(t.f),q,p,o,n,m
 var $async$a75=A.I(function(c,d){if(c===1)return A.K(d,r)
-while(true)switch(s){case 0:n="http://"+a+":"+b+"/api/turn?service=turn&username=flutter-webrtc"
+while(true)switch(s){case 0:n="https://"+a+":"+b+"/api/turn?service=turn&username=flutter-webrtc"
 s=3
 return A.V(A.apK(A.vj(n)),$async$a75)
 case 3:m=d
@@ -58720,9 +58720,9 @@ nD(a,b){return this.Zc(a,b)},
 Zc(a,b){var s=0,r=A.N(t.H),q=1,p,o=[],n=this,m,l,k,j,i,h,g
 var $async$nD=A.I(function(c,d){if(c===1){p=d
 s=q}while(true)switch(s){case 0:j=n.e
-i="http://"+j+":/ws"
+i="https://"+j+":/ws"
 h=new A.Yc(i)
-h.a=A.jd(i,"http:","ws:")
+h.a=A.jd(i,"https:","wss:")
 n.d=h
 A.cQ("connect to "+i)
 s=n.r==null?2:3
